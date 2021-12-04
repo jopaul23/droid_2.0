@@ -3,6 +3,7 @@ import 'package:scanner/home.dart';
 
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:scanner/participantDetails/participant_qrdetails.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
               // is not restarted.
               primarySwatch: Colors.blue,
             ),
-            home: const AttendancePage(),
+            home: const ParticipantDetails(),
           );
         });
   }
