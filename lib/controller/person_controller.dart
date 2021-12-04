@@ -12,9 +12,9 @@ class PersonController extends GetxController {
         mob: 84373737233),
     User(
         id: 1,
-        name: "Joyal Raphel",
+        name: "Naigesh K",
         dept: "Computer Science",
-        college: "FISAT",
+        college: "Rajagiri",
         mob: 84373737233),
     User(
         id: 1,

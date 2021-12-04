@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scanner/constants/constants.dart';
+import 'package:scanner/screens/food/fooddetails.dart';
 import 'package:scanner/screens/home/homepage_container.dart';
 import 'package:scanner/screens/home/top_widget.dart';
 import 'package:scanner/controller/person_controller.dart';
@@ -33,9 +34,11 @@ class _HomeState extends State<Home> {
           setState(() {
             _currentIndex = newIndex;
             if (newIndex == 0) {
-              Get.to(Home());
+              Get.to(const Home());
             } else if (newIndex == 1) {
-              Get.to(QRViewExample());
+              Get.to(const QRViewExample());
+            } else if (newIndex == 2) {
+              Get.to(const FoodDetails());
             }
           });
         },
@@ -65,7 +68,7 @@ class _HomeState extends State<Home> {
                   ? CommonPageColors.primaryBlue
                   : CommonPageColors.textColor,
             ),
-            label: "Person",
+            label: "events",
           ),
         ],
       ),

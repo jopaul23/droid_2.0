@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:scanner/screens/participantDetails/participant_qrdetails.dart';
 
 void main() {
   runApp(const MyApp());
