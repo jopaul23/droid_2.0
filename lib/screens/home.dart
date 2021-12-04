@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:scanner/scanningPage/scanning_page.dart';
-import 'package:scanner/scanningPage/scanning_toast.dart';
+
+import 'scanningPage/scanning_complete_page.dart';
 
 class AttendancePage extends StatefulWidget {
   const AttendancePage({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class _AttendancePageState extends State<AttendancePage> {
                 //           overlayEntry: overlayEntry,
                 //         ));
                 // Overlay.of(context)!.insert(overlayEntry);
-                Get.to(const QRViewExample());
+                Get.to(const ScanningCompletePage());
               },
               child: Text(
                 "add participant",

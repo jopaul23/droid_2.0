@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:scanner/home.dart';
+import 'package:scanner/screens/home.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
               // or simply save your changes to "hot reload" in a Flutter IDE).
               // Notice that the counter didn't reset back to zero; the application
               // is not restarted.
+              fontFamily: GoogleFonts.rubik(fontSize: 14.sp).fontFamily,
               primarySwatch: Colors.blue,
             ),
             home: const ParticipantDetails(),
