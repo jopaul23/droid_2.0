@@ -3,9 +3,11 @@ import 'package:flutter/scheduler.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:developer';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:scanner/constants/constants.dart';
 import 'package:scanner/screens/scanningPage/scanning_toast.dart';
 
 class QRViewExample extends StatefulWidget {
@@ -62,18 +64,21 @@ class _QRViewExampleState extends State<QRViewExample> {
             MediaQuery.of(context).size.height < 400)
         ? 150.0
         : 300.0;
+    int _currentIndex = 1;
     // To ensure the Scanner view is properly sizes after rotation
     // we need to listen for Flutter SizeChanged notification and update controller
-    return QRView(
-      key: qrKey,
-      onQRViewCreated: _onQRViewCreated,
-      overlay: QrScannerOverlayShape(
-          borderColor: Colors.red,
-          borderRadius: 10,
-          borderLength: 30,
-          borderWidth: 10,
-          cutOutSize: scanArea),
-      onPermissionSet: (ctrl, p) => _onPermissionSet(context, ctrl, p),
+    return Scaffold(
+      body: QRView(
+        key: qrKey,
+        onQRViewCreated: _onQRViewCreated,
+        overlay: QrScannerOverlayShape(
+            borderColor: Colors.red,
+            borderRadius: 10,
+            borderLength: 30,
+            borderWidth: 10,
+            cutOutSize: scanArea),
+        onPermissionSet: (ctrl, p) => _onPermissionSet(context, ctrl, p),
+      ),
     );
   }
 

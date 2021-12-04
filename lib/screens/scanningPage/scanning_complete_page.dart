@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:scanner/screens/home.dart';
+import 'package:scanner/screens/home/home.dart';
 import 'package:get/get.dart';
 
 class ScanningCompletePage extends StatefulWidget {
@@ -152,7 +152,7 @@ class _ScanningCompletePageState extends State<ScanningCompletePage>
                     //           overlayEntry: overlayEntry,
                     //         ));
                     // Overlay.of(context)!.insert(overlayEntry);
-                    Get.to(const AttendancePage());
+                    Get.to(const Home());
                   },
                   child: const Text(
                     "continue",
