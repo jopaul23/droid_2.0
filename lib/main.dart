@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:scanner/screens/food/fooddetails.dart';
 import 'package:scanner/screens/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:scanner/participantDetails/participant_qrdetails.dart';
+import 'package:scanner/screens/participantDetails/participant_qrdetails.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
               fontFamily: GoogleFonts.rubik(fontSize: 14.sp).fontFamily,
               primarySwatch: Colors.blue,
             ),
-            home: const ParticipantDetails(),
+            home: //const FoodDetails(),
+                ParticipantDetails(),
           );
         });
   }
