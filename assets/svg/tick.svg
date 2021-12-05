@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="81" height="81" viewBox="0 0 81 81">
+  <g id="o" transform="translate(-91.167 -1376)">
+    <rect id="CheckBox" width="77" height="77" rx="38.5" transform="translate(93.167 1378)" fill="none" stroke="#fafafa" stroke-miterlimit="10" stroke-width="4"/>
+    <path id="Vector" d="M9.637,23.571a3.18,3.18,0,0,1-2.272-.943L.933,16.2a3.214,3.214,0,1,1,4.545-4.545l4.159,4.159L24.515.933A3.214,3.214,0,0,1,29.06,5.477L11.909,22.628A3.11,3.11,0,0,1,9.637,23.571Z" transform="translate(116.671 1404.714)" fill="#fafafa"/>
+  </g>
+</svg>

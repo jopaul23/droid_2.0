@@ -4,6 +4,7 @@ import 'package:scanner/constants/constants.dart';
 import 'package:scanner/screens/home/home.dart';
 import 'package:get/get.dart';
 import 'package:scanner/screens/scanningPage/scanning_page.dart';
+import 'package:scanner/widgets/toast.dart';
 
 class ScanningCompletePage extends StatefulWidget {
   const ScanningCompletePage({Key? key}) : super(key: key);
@@ -23,6 +24,13 @@ class _ScanningCompletePageState extends State<ScanningCompletePage>
   void initState() {
     // TODO: implement initState
     super.initState();
+    late OverlayEntry toastOverlay;
+    toastOverlay = OverlayEntry(
+        builder: (context) => Toast(
+            title: "User updated",
+            description: "breafast added by user",
+            icon: "assets/svg/tick.svg",
+            overlayEntry: toastOverlay));
     animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 4));
     animationController.repeat();

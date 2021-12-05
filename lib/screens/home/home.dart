@@ -89,6 +89,14 @@ class _HomeState extends State<Home> {
             const TopWidget(
               isCertificate: false,
             ),
+            Text(
+              "participants",
+              style: TextStyle(
+                color: CommonPageColors.textColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+              ),
+            ),
             Expanded(
               child: GridView.count(
                 crossAxisCount: 3,
