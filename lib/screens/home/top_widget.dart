@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scanner/constants/constants.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:scanner/screens/scanningPage/scannerlog.dart';
 import 'package:scanner/screens/scanningPage/scanning_page.dart';
 
 class TopWidget extends StatelessWidget {
@@ -31,7 +32,7 @@ class TopWidget extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Get.to(QRViewExample());
+            Get.to(ScannerLog());
           },
           child: isCertificate
               ? SizedBox()

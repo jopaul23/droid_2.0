@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scanner/screens/certificates.dart/certificate_preview.dart';
 import 'package:scanner/screens/home/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
               fontFamily: GoogleFonts.rubik(fontSize: 14.sp).fontFamily,
               primarySwatch: Colors.blue,
             ),
-            home: const Home(),
+            home: const CerficatePreview(),
           );
         });
   }

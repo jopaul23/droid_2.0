@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:scanner/screens/scanningPage/scanning_page.dart';
+import 'package:get/get.dart';
 
 class ScannerLog extends StatefulWidget {
   ScannerLog({Key? key}) : super(key: key);
@@ -75,7 +77,7 @@ class _ScannerLogState extends State<ScannerLog> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        //scanner
+                        Get.off(QRViewExample());
                         return _site;
                       },
                       child: Text("Continue"))
