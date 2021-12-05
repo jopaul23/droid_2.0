@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scanner/constants/constants.dart';
-import 'package:scanner/screens/certificates.dart/certificates.dart';
 import 'package:scanner/screens/food/fooddetails.dart';
+import 'package:scanner/screens/home/home.dart';
 import 'package:scanner/screens/home/top_widget.dart';
 import 'package:scanner/controller/person_controller.dart';
 import 'package:scanner/screens/scanningPage/scanning_page.dart';
@@ -14,18 +14,18 @@ import 'package:scanner/widgets/user_container.dart';
 
 import '../scanningPage/scanning_complete_page.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class Certificate extends StatefulWidget {
+  const Certificate({Key? key}) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  _CertificateState createState() => _CertificateState();
 }
 
-class _HomeState extends State<Home> {
+class _CertificateState extends State<Certificate> {
   PersonController personController = Get.put(PersonController());
   @override
   Widget build(BuildContext context) {
-    int _currentIndex = 0;
+    int _currentIndex = 1;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
@@ -35,8 +35,8 @@ class _HomeState extends State<Home> {
           setState(() {
             _currentIndex = newIndex;
             if (newIndex == 0) {
+              Get.to(const Home());
             } else if (newIndex == 1) {
-              Get.to(const Certificate());
             } else if (newIndex == 2) {
               Get.to(const FoodDetails());
             }
@@ -80,7 +80,18 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const TopWidget(
-              isCertificate: false,
+              isCertificate: true,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Certificates",
+              style: TextStyle(
+                color: CommonPageColors.textColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+              ),
             ),
             Expanded(
               child: GridView.count(

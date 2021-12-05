@@ -27,7 +27,10 @@ class _HomePaeContainerState extends State<HomePaeContainer> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(ParticipantDetails(index: widget.index));
+        Get.to(ParticipantDetails(
+          user: personController.userList[widget.index],
+          food: personController.foodList[0],
+        ));
       },
       child: Container(
         padding: const EdgeInsets.all(10),

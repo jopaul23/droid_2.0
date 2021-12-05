@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:scanner/constants/constants.dart';
 import 'package:scanner/screens/home/home.dart';
 import 'package:get/get.dart';
+import 'package:scanner/screens/scanningPage/scanning_page.dart';
 
 class ScanningCompletePage extends StatefulWidget {
   const ScanningCompletePage({Key? key}) : super(key: key);
@@ -48,125 +50,149 @@ class _ScanningCompletePageState extends State<ScanningCompletePage>
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      color: Colors.white,
-      child: Stack(
-        // fit: StackFit.expand,
-        alignment: Alignment.center,
-        children: [
-          _bgCircle(sizeAnimation1.value, size),
-          _bgCircle(sizeAnimation2.value, size),
-          _bgCircle(sizeAnimation3.value, size),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: size.height / 2 - 150,
-              ),
-              Container(
-                height: 300,
-                width: 300,
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: Colors.blue,
+    return Scaffold(
+      body: Container(
+        color: Colors.white,
+        child: Stack(
+          // fit: StackFit.expand,
+          alignment: Alignment.center,
+          children: [
+            _bgCircle(sizeAnimation1.value, size),
+            _bgCircle(sizeAnimation2.value, size),
+            _bgCircle(sizeAnimation3.value, size),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: size.height / 2 - 150,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text("User found",
-                        style: TextStyle(
-                          fontSize: 19,
-                          color: Colors.white,
-                          decoration: TextDecoration.none,
-                          fontWeight: FontWeight.w600,
-                        )),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      height: 80,
-                      width: 80,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40),
-                          color: Colors.white),
-                      child: const Text(
-                        "N",
-                        style: TextStyle(
-                            color: Color(0xffFF076A),
-                            fontSize: 40,
-                            decoration: TextDecoration.none),
+                Container(
+                  height: 300,
+                  width: 300,
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: CommonPageColors.primaryBlue,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text("User found",
+                          style: TextStyle(
+                            fontSize: 19,
+                            color: Colors.white,
+                            decoration: TextDecoration.none,
+                            fontWeight: FontWeight.w600,
+                          )),
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Text("Naigal roy",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            decoration: TextDecoration.none)),
-                    const SizedBox(
-                      height: 7,
-                    ),
-                    const Text("S4 CSB",
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            decoration: TextDecoration.none)),
-                    const SizedBox(
-                      height: 7,
-                    ),
-                    const Text("FISAT",
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            decoration: TextDecoration.none)),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    SvgPicture.asset(
-                      "assets/svg/droid.svg",
-                      height: 40,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 100,
-              ),
-              Container(
-                alignment: Alignment.center,
-                height: 40,
-                width: 100,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.blue),
-                child: GestureDetector(
-                  onTap: () {
-                    // late OverlayEntry overlayEntry;
-                    // overlayEntry = OverlayEntry(
-                    //     builder: (context) => ScannedPopUp(
-                    //           name: "Jopaul Joy",
-                    //           overlayEntry: overlayEntry,
-                    //         ));
-                    // Overlay.of(context)!.insert(overlayEntry);
-                    Get.to(const Home());
-                  },
-                  child: const Text(
-                    "continue",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        decoration: TextDecoration.none),
+                      Container(
+                        height: 80,
+                        width: 80,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                            color: Colors.white),
+                        child: const Text(
+                          "N",
+                          style: TextStyle(
+                              color: Color(0xffFF076A),
+                              fontSize: 40,
+                              decoration: TextDecoration.none),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      const Text("Naigal roy",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              decoration: TextDecoration.none)),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const Text("S4 CSB",
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              decoration: TextDecoration.none)),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const Text("FISAT",
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              decoration: TextDecoration.none)),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      SvgPicture.asset(
+                        "assets/svg/droid.svg",
+                        height: 40,
+                      ),
+                    ],
                   ),
                 ),
-              )
-            ],
-          ),
-        ],
+                const SizedBox(
+                  height: 100,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.off(Home());
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        width: 120,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: CommonPageColors.primaryBlue),
+                        child: const Text(
+                          "back home",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              decoration: TextDecoration.none),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.off(QRViewExample());
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        width: 120,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: CommonPageColors.primaryBlue),
+                        child: const Text(
+                          "scan new",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              decoration: TextDecoration.none),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -180,7 +206,8 @@ class _ScanningCompletePageState extends State<ScanningCompletePage>
         width: radius * radius,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.blue.withOpacity(.15 * opacityAnimation.value),
+          color: CommonPageColors.primaryBlue
+              .withOpacity(.15 * opacityAnimation.value),
         ),
       ),
     );

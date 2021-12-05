@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+import 'package:scanner/constants/constants.dart';
 import 'package:scanner/controller/person_controller.dart';
+import 'package:scanner/models/food.dart';
+import 'package:scanner/models/user.dart';
+import 'package:scanner/screens/participantDetails/event_container.dart';
 
 import 'certificate.dart';
 
 class ParticipantDetails extends StatelessWidget {
-  ParticipantDetails({Key? key, required this.index}) : super(key: key);
-  final int index;
+  ParticipantDetails({Key? key, required this.user, required this.food})
+      : super(key: key);
+  final User user;
+  final Food food;
   @override
   Widget build(BuildContext context) {
     PersonController personController = Get.find<PersonController>();
     return Scaffold(
       body: SafeArea(
         child: Container(
+          color: CommonPageColors.bgColor,
           padding: EdgeInsets.all(18),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
@@ -36,9 +43,9 @@ class ParticipantDetails extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      Text(personController.userList[index].name),
-                      Text(personController.userList[index].dept),
-                      Text(personController.userList[index].college)
+                      Text(user.name),
+                      Text(user.dept),
+                      Text(user.college)
                     ],
                   )),
               const SizedBox(
@@ -51,28 +58,51 @@ class ParticipantDetails extends StatelessWidget {
                   fontSize: 20,
                 ),
               ),
+              const EventContainer(
+                title: "breakfast",
+                condition: true,
+                isSnack: false,
+              ),
+              const EventContainer(
+                title: "lunch",
+                condition: true,
+                isSnack: false,
+              ),
+              const EventContainer(
+                title: "dinner",
+                condition: true,
+                isSnack: false,
+              ),
+              const EventContainer(
+                title: "snack",
+                condition: false,
+                isSnack: true,
+                count: 2,
+              ),
+              SizedBox(
+                height: 30,
+              ),
               Container(
-                height: 100,
-                width: 300,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  elevation: 10,
-                  child: InkWell(
-                      onTap: () {
-                        showButtomSheet(context);
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Certificate Generator",
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      )),
+                height: 50,
+                width: 120,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  color: CommonPageColors.primaryBlue,
                 ),
+                child: InkWell(
+                    onTap: () {
+                      showButtomSheet(context);
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Certificate Generator",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: CommonPageColors.white),
+                        ),
+                      ],
+                    )),
               ),
             ],
           ),

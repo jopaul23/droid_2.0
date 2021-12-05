@@ -5,9 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dart:developer';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:io';
-
+import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
 import 'package:scanner/constants/constants.dart';
+import 'package:scanner/screens/scanningPage/scanning_complete_page.dart';
 import 'package:scanner/screens/scanningPage/scanning_toast.dart';
 
 class QRViewExample extends StatefulWidget {
@@ -41,32 +42,12 @@ class _QRViewExampleState extends State<QRViewExample> {
     );
   }
 
-  _overlayCreation() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      setState(() {
-        late OverlayEntry overlayEntry;
-        isOverlay = true;
-        overlayEntry = OverlayEntry(
-            builder: (context) => ScannedPopUp(
-                  name: result!.code!.toString(),
-                  overlayEntry: overlayEntry,
-                ));
-        Future.delayed(const Duration(seconds: 12))
-            .whenComplete(() => isOverlay = false);
-        Overlay.of(context)!.insert(overlayEntry);
-      });
-    });
-  }
-
   Widget _buildQrView(BuildContext context) {
     // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
             MediaQuery.of(context).size.height < 400)
         ? 150.0
         : 300.0;
-    int _currentIndex = 1;
-    // To ensure the Scanner view is properly sizes after rotation
-    // we need to listen for Flutter SizeChanged notification and update controller
     return Scaffold(
       body: QRView(
         key: qrKey,
@@ -89,7 +70,7 @@ class _QRViewExampleState extends State<QRViewExample> {
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData;
-        result != null && !isOverlay ? _overlayCreation() : const SizedBox();
+        result != null ? Get.to(ScanningCompletePage()) : SizedBox();
       });
     });
   }

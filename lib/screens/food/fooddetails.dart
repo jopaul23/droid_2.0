@@ -1,11 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:scanner/constants/constants.dart';
+import 'package:get/get.dart';
+import 'package:scanner/screens/certificates.dart/certificates.dart';
+import 'package:scanner/screens/home/home.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class FoodDetails extends StatelessWidget {
+class FoodDetails extends StatefulWidget {
   const FoodDetails({Key? key}) : super(key: key);
 
   @override
+  State<FoodDetails> createState() => _FoodDetailsState();
+}
+
+class _FoodDetailsState extends State<FoodDetails> {
+  @override
   Widget build(BuildContext context) {
+    int _currentIndex = 2;
     return Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: CommonPageColors.white,
+          currentIndex: _currentIndex,
+          onTap: (newIndex) {
+            setState(() {
+              _currentIndex = newIndex;
+              if (newIndex == 0) {
+                Get.to(const Home());
+              } else if (newIndex == 1) {
+                Get.off(const Certificate());
+              } else if (newIndex == 2) {}
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                "assets/svg/home.svg",
+                color: _currentIndex == 0
+                    ? CommonPageColors.primaryBlue
+                    : CommonPageColors.textColor,
+              ),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                "assets/svg/certificate.svg",
+                color: _currentIndex == 1
+                    ? CommonPageColors.primaryBlue
+                    : CommonPageColors.textColor,
+              ),
+              label: "certificate",
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                "assets/svg/events.svg",
+                color: _currentIndex == 2
+                    ? CommonPageColors.primaryBlue
+                    : CommonPageColors.textColor,
+              ),
+              label: "events",
+            ),
+          ],
+        ),
         floatingActionButton: TextButton.icon(
             icon: Icon(Icons.share),
             onPressed: () {},
@@ -103,7 +157,6 @@ class FoodDetails extends StatelessWidget {
                   ],
                 ))));
   }
-  //sample person for working
 
   Widget createTable() {
     List<Person> _personList = [];
