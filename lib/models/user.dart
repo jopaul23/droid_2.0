@@ -3,7 +3,7 @@ class User {
   final String name;
   final String dept;
   final String college;
-  final int mob;
+  final String mob;
 
   User({
     required this.id,

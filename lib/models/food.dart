@@ -15,9 +15,9 @@ class Food {
   factory Food.fromJson(Map json) {
     return Food(
         id: json["id"],
-        breakFast: json["breakfast"],
-        lunch: json["lunch"],
-        snack: json["snack"],
-        supper: json["supper"]);
+        breakFast: json["breakfast"] == 0?false:true,
+        lunch: json["lunch"] == 0? false:true,
+        snack: json["snacks"] as int,
+        supper: json["supper"] ==0? false:true);
   }
 }

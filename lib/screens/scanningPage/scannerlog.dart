@@ -77,10 +77,10 @@ class _ScannerLogState extends State<ScannerLog> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        Get.off(QRViewExample());
-                        return _site;
+                        Get.off(QRViewExample(tag: _site,));
+                 
                       },
-                      child: Text("Continue"))
+                      child:const Text("Continue"))
                 ],
               )),
             ),

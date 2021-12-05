@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:scanner/backend/api.dart';
 import 'package:scanner/constants/constants.dart';
 import 'package:get/get.dart';
+import 'package:scanner/models/food.dart';
 import 'package:scanner/screens/certificates.dart/certificates.dart';
 import 'package:scanner/screens/home/home.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,6 +15,17 @@ class FoodDetails extends StatefulWidget {
 }
 
 class _FoodDetailsState extends State<FoodDetails> {
+  late List<Food> _foods;
+  bool _loaded = false;
+  @override
+  void initState() {
+    super.initState();
+    Api.getAllFoodDetails().then((value) => setState(() {
+          _foods = value;
+          _loaded = true;
+        }));
+  }
+
   @override
   Widget build(BuildContext context) {
     int _currentIndex = 2;
@@ -151,7 +164,8 @@ class _FoodDetailsState extends State<FoodDetails> {
                             ],
                           ),
                         ),
-                        createTable(),
+                        _loaded?
+                        createTable():CircularProgressIndicator(),
                       ],
                     )
                   ],
@@ -159,23 +173,15 @@ class _FoodDetailsState extends State<FoodDetails> {
   }
 
   Widget createTable() {
-    List<Person> _personList = [];
-
-    for (int i = 0; i < 5; ++i) {
-      Person temp = Person(
-          id: 1, breakfast: 'true', lunch: 'true', tea: 3, supper: 'true');
-      _personList.add(temp);
-    }
-
     return Container(
       padding: EdgeInsets.only(left: 5.0, right: 5.0),
       child: Table(
         border: TableBorder.all(
             color: Colors.black, borderRadius: BorderRadius.circular(3)),
         children: List<TableRow>.generate(
-          _personList.length,
+          _foods.length,
           (index) {
-            final person = _personList[index];
+            final person = _foods[index];
             return TableRow(
               children: [
                 Padding(
@@ -185,20 +191,20 @@ class _FoodDetailsState extends State<FoodDetails> {
                 ),
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: Text(person.breakfast, textAlign: TextAlign.center),
+                  child: Text(_foods[index].breakFast.toString(), textAlign: TextAlign.center),
                 ),
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: Text(person.lunch, textAlign: TextAlign.center),
+                  child: Text(_foods[index].lunch.toString(), textAlign: TextAlign.center),
                 ),
                 Padding(
                   padding: EdgeInsets.all(5.0),
                   child:
-                      Text(person.tea.toString(), textAlign: TextAlign.center),
+                      Text(_foods[index].snack.toString(), textAlign: TextAlign.center),
                 ),
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: Text(person.supper, textAlign: TextAlign.center),
+                  child: Text(_foods[index].supper.toString(), textAlign: TextAlign.center),
                 ),
               ],
             );
@@ -208,20 +214,4 @@ class _FoodDetailsState extends State<FoodDetails> {
       ),
     );
   }
-}
-
-class Person {
-  final int id;
-  final String breakfast;
-  final String lunch;
-  final int tea;
-  final String supper;
-
-  const Person({
-    this.id = 0,
-    this.breakfast = '',
-    this.lunch = 'dfd',
-    this.tea = 0,
-    this.supper = '',
-  });
 }

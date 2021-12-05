@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:scanner/backend/api.dart';
 import 'package:scanner/constants/constants.dart';
 import 'package:scanner/controller/person_controller.dart';
 import 'package:get/get.dart';
+import 'package:scanner/models/food.dart';
 import 'package:scanner/screens/participantDetails/participant_qrdetails.dart';
 
-class HomePaeContainer extends StatefulWidget {
+class HomePaeContainer extends StatelessWidget {
   HomePaeContainer({
     Key? key,
     required this.size,
@@ -15,27 +17,25 @@ class HomePaeContainer extends StatefulWidget {
   final int index;
 
   @override
-  State<HomePaeContainer> createState() => _HomePaeContainerState();
-}
-
-class _HomePaeContainerState extends State<HomePaeContainer> {
-  @override
   PersonController personController = Get.find<PersonController>();
 
   int _currentIndex = 0;
 
+
+@override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+      
         Get.to(ParticipantDetails(
-          user: personController.userList[widget.index],
-          food: personController.foodList[0],
+          user: personController.userList[index],
+ 
         ));
       },
       child: Container(
         padding: const EdgeInsets.all(10),
-        height: widget.size.width / 3.6,
-        width: widget.size.width / 3.6,
+        height: size.width / 3.6,
+        width: size.width / 3.6,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             color: CommonPageColors.white,
@@ -47,10 +47,10 @@ class _HomePaeContainerState extends State<HomePaeContainer> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: widget.size.width / (3.6 * 2) - 30,
+              height: size.width / (3.6 * 2) - 30,
             ),
             Text(
-              personController.userList[widget.index].name,
+              personController.userList[index].name,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: CommonPageColors.textColor,
@@ -62,7 +62,7 @@ class _HomePaeContainerState extends State<HomePaeContainer> {
               height: 5,
             ),
             Text(
-              personController.userList[widget.index].college,
+              personController.userList[index].college,
               style: TextStyle(
                 color: CommonPageColors.textColor,
                 decoration: TextDecoration.none,
@@ -71,7 +71,7 @@ class _HomePaeContainerState extends State<HomePaeContainer> {
             ),
             const Spacer(),
             Container(
-              width: widget.size.width / 3.6 - 50,
+              width: size.width / 3.6 - 50,
               height: 4,
               decoration: BoxDecoration(
                   color: const Color(0xffFF0236),

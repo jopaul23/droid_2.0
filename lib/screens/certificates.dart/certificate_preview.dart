@@ -1,9 +1,37 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:scanner/backend/api.dart';
 import 'package:scanner/constants/constants.dart';
+import 'package:scanner/models/user.dart';
 
-class CerficatePreview extends StatelessWidget {
-  const CerficatePreview({Key? key}) : super(key: key);
+class CerficatePreview extends StatefulWidget {
+  final User user;
+  const CerficatePreview({Key? key, required this.user}) : super(key: key);
+
+  @override
+  State<CerficatePreview> createState() => _CerficatePreviewState();
+}
+
+class _CerficatePreviewState extends State<CerficatePreview> {
+  Image? certificate;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _generateCertificate();
+  }
+
+  void _generateCertificate() async {
+    final rawbase64 = await Api.getCertificate(widget.user.id);
+    setState(() {
+      certificate = Image.memory(
+        base64.decode(rawbase64),
+        width: MediaQuery.of(context).size.width - defaultPadding * 2,
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +61,9 @@ class CerficatePreview extends StatelessWidget {
               const SizedBox(
                 height: 60,
               ),
-              Image.asset(
-                "assets/png/certificate.png",
-                width: MediaQuery.of(context).size.width - defaultPadding * 2,
-              ),
+              certificate != null
+                  ? certificate!
+                  : const CircularProgressIndicator(),
               const SizedBox(
                 height: 30,
               ),

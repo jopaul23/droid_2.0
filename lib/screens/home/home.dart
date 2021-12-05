@@ -24,6 +24,13 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   PersonController personController = Get.put(PersonController());
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    personController.getUserList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     int _currentIndex = 0;
     Size size = MediaQuery.of(context).size;
@@ -83,20 +90,30 @@ class _HomeState extends State<Home> {
               isCertificate: false,
             ),
             Expanded(
-              child: GridView.count(
-                crossAxisCount: 3,
-                crossAxisSpacing: 4.0,
-                mainAxisSpacing: 8.0,
-                children:
-                    List.generate(personController.userList.length, (index) {
-                  return Center(
-                    child: HomePaeContainer(
-                      size: size,
-                      index: index,
+              child: GetBuilder<PersonController>(builder: (personController) {
+                if (personController.loading)
+                  return  Center(
+                    child: Column(
+                      children: [
+                        CircularProgressIndicator(),
+                      ],
                     ),
                   );
-                }),
-              ),
+                return GridView.count(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 4.0,
+                  mainAxisSpacing: 8.0,
+                  children:
+                      List.generate(personController.userList.length, (index) {
+                    return Center(
+                      child: HomePaeContainer(
+                        size: size,
+                        index: index,
+                      ),
+                    );
+                  }),
+                );
+              }),
             ),
           ],
         ),

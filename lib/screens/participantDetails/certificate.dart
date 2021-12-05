@@ -12,7 +12,7 @@ class _CertificateWidgetState extends State<CertificateWidget> {
   @override
   void initState() {
     super.initState();
-    Api.getCertificate(0);
+    //Api.getCertificate(0);
   }
 
   @override
@@ -48,7 +48,9 @@ class _CertificateWidgetState extends State<CertificateWidget> {
                 children: [
                   IconButton(
                     iconSize: 30,
-                    onPressed: () {},
+                    onPressed: () {
+                      
+                    },
                     icon: Image.asset(
                       "assets/png/preview.png",
                     ),

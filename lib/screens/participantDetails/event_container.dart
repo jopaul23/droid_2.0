@@ -43,7 +43,7 @@ class EventContainer extends StatelessWidget {
                 width: 10,
               ),
               Text(
-                "lunch",
+                title,
                 style: TextStyle(color: CommonPageColors.textColor),
               ),
               const Spacer(),

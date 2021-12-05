@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:ffi';
+import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
 import 'package:scanner/models/food.dart';
@@ -9,18 +11,20 @@ class Api {
 
   static Future<String> getCertificate(int id) async {
     final urLink = Uri.parse(url + "/getcertificate");
-    final response = await http.post(urLink, body: {'id': id});
+    final response = await http.post(urLink, body: {'id': id.toString()});
 
-    return jsonDecode(response.body)["data"];
+    String a = response.body;
+    print(a);
+    return a;
   }
 
   static Future<List<User>> getAllUsers() async {
     final urLink = Uri.parse(url + "/getAllUsers");
     final response = await http.post(urLink);
 
-    List<Map> json = jsonDecode(response.body);
+    List json = jsonDecode(response.body);
     List<User> users = [];
-    for (Map j in json) {
+    for (var j in json) {
       users.add(User.fromJson(j));
     }
     return users;
@@ -28,11 +32,12 @@ class Api {
 
   static Future<User> getUser(int id) async {
     final urLink = Uri.parse(url + "/getUser");
-    final response = await http.post(urLink, body: {'id': id});
+    final response = await http.post(urLink, body: {'id': id.toString()});
 
-    List<Map> json = jsonDecode(response.body);
+    List json = jsonDecode(response.body);
     User user = User.fromJson(json[0]);
-
+    print("---------------------------");
+    print(user.name);
     return user;
   }
 
@@ -40,9 +45,9 @@ class Api {
     final urLink = Uri.parse(url + "/getAllRefershmentDetails");
     final response = await http.post(urLink);
 
-    List<Map> json = jsonDecode(response.body);
+    List json = jsonDecode(response.body);
     List<Food> foods = [];
-    for (Map j in json) {
+    for (var j in json) {
       foods.add(Food.fromJson(j));
     }
     return foods;
@@ -50,8 +55,8 @@ class Api {
 
   static Future<Food> getUserFood(int id) async {
     final urLink = Uri.parse(url + "/getRefershmentDetails");
-    final response = await http.post(urLink, body: {"id": id});
-    List<Map> json = jsonDecode(response.body);
+    final response = await http.post(urLink, body: {"id": id.toString()});
+    List json = jsonDecode(response.body);
     Food food = Food.fromJson(json[0]);
 
     return food;
@@ -59,7 +64,11 @@ class Api {
 
   static void update(int id, var value, var tag) async {
     final urLink = Uri.parse(url + '/updateRefershment');
-    final response =
-        await http.post(urLink, body: {'id': id, 'value': value, 'tag': tag});
+    print(tag);
+    final response = await http.post(urLink, body: {
+      'id': id.toString(),
+      'value': value.toString(),
+      'tag': tag.toLowerCase()
+    });
   }
 }

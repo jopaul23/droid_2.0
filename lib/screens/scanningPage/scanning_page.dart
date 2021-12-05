@@ -12,7 +12,8 @@ import 'package:scanner/screens/scanningPage/scanning_complete_page.dart';
 import 'package:scanner/screens/scanningPage/scanning_toast.dart';
 
 class QRViewExample extends StatefulWidget {
-  const QRViewExample({Key? key}) : super(key: key);
+  final String tag;
+  const QRViewExample({Key? key, required this.tag}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _QRViewExampleState();
@@ -70,7 +71,7 @@ class _QRViewExampleState extends State<QRViewExample> {
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData;
-        result != null ? Get.to(ScanningCompletePage()) : SizedBox();
+        result != null ? Get.to(ScanningCompletePage(id:int.parse(result!.code!),tag: widget.tag,)) : SizedBox();
       });
     });
   }

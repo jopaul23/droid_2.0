@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
               fontFamily: GoogleFonts.rubik(fontSize: 14.sp).fontFamily,
               primarySwatch: Colors.blue,
             ),
-            home: const CerficatePreview(),
+            home: const Home(),
           );
         });
   }
