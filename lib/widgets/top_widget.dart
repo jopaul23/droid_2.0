@@ -7,10 +7,10 @@ import 'package:scanner/screens/scanningPage/scanning_page.dart';
 
 class TopWidget extends StatelessWidget {
   const TopWidget({
-    required this.isCertificate,
+    required this.id,
     Key? key,
   }) : super(key: key);
-  final bool isCertificate;
+  final int id;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -22,9 +22,11 @@ class TopWidget extends StatelessWidget {
             ),
             Center(
               child: SvgPicture.asset(
-                isCertificate
+                id == 1
                     ? "assets/svg/certificateImg.svg"
-                    : "assets/svg/img.svg",
+                    : id == 0
+                        ? "assets/svg/img.svg"
+                        : "assets/svg/food.svg",
                 height: 200,
               ),
             ),
@@ -34,7 +36,7 @@ class TopWidget extends StatelessWidget {
           onTap: () {
             Get.to(ScannerLog());
           },
-          child: isCertificate
+          child: id == 1
               ? SizedBox()
               : Container(
                   height: 40,

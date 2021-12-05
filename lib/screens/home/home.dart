@@ -87,7 +87,7 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const TopWidget(
-              isCertificate: false,
+              id: 0,
             ),
             Text(
               "participants",

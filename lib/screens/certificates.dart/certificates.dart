@@ -80,7 +80,7 @@ class _CertificateState extends State<Certificate> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const TopWidget(
-              isCertificate: true,
+              id: 1,
             ),
             const SizedBox(
               height: 10,
