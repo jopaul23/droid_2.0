@@ -24,13 +24,7 @@ class _ScanningCompletePageState extends State<ScanningCompletePage>
   void initState() {
     // TODO: implement initState
     super.initState();
-    late OverlayEntry toastOverlay;
-    toastOverlay = OverlayEntry(
-        builder: (context) => Toast(
-            title: "User updated",
-            description: "breafast added by user",
-            icon: "assets/svg/tick.svg",
-            overlayEntry: toastOverlay));
+
     animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 4));
     animationController.repeat();
@@ -46,6 +40,18 @@ class _ScanningCompletePageState extends State<ScanningCompletePage>
       setState(() {});
     });
     animationController.forward();
+
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      late OverlayEntry toastOverlay;
+      toastOverlay = OverlayEntry(
+          builder: (context) => Toast(
+              title: "User updated",
+              description: "breafast added by user",
+              icon: "assets/svg/tick.svg",
+              overlayEntry: toastOverlay));
+
+      Overlay.of(context)?.insert(toastOverlay);
+    });
   }
 
   @override

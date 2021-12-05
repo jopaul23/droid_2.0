@@ -58,7 +58,7 @@ class _ToastState extends State<Toast> with SingleTickerProviderStateMixin {
             padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
             height: 50,
             width: MediaQuery.of(context).size.width,
-            color: ToastColors.toastYellow,
+            color: CommonPageColors.primaryBlue,
             alignment: Alignment.center,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
