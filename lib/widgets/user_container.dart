@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scanner/constants/constants.dart';
 import 'package:scanner/controller/person_controller.dart';
 import 'package:get/get.dart';
+import 'package:scanner/screens/certificates.dart/certificate_preview.dart';
 import 'package:scanner/screens/participantDetails/participant_qrdetails.dart';
 
 class HomePaeContainer extends StatefulWidget {
@@ -9,10 +10,12 @@ class HomePaeContainer extends StatefulWidget {
     Key? key,
     required this.size,
     required this.index,
+    required this.isCertificate,
   }) : super(key: key);
 
   final Size size;
   final int index;
+  final bool isCertificate;
 
   @override
   State<HomePaeContainer> createState() => _HomePaeContainerState();
@@ -27,10 +30,12 @@ class _HomePaeContainerState extends State<HomePaeContainer> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(ParticipantDetails(
-          user: personController.userList[widget.index],
-          food: personController.foodList[0],
-        ));
+        !widget.isCertificate
+            ? Get.to(ParticipantDetails(
+                user: personController.userList[widget.index],
+                food: personController.foodList[0],
+              ))
+            : Get.to(const CerficatePreview());
       },
       child: Container(
         padding: const EdgeInsets.all(10),

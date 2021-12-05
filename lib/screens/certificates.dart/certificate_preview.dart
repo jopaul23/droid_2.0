@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scanner/constants/constants.dart';
+import 'package:get/get.dart';
 
 class CerficatePreview extends StatelessWidget {
   const CerficatePreview({Key? key}) : super(key: key);
@@ -24,9 +25,14 @@ class CerficatePreview extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  SvgPicture.asset(
-                    "assets/svg/exit.svg",
-                    height: 30,
+                  GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: SvgPicture.asset(
+                      "assets/svg/exit.svg",
+                      height: 30,
+                    ),
                   ),
                 ],
               ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scanner/backend/api.dart';
+import 'package:scanner/screens/certificates.dart/certificate_preview.dart';
+import 'package:get/get.dart';
 
 class CertificateWidget extends StatefulWidget {
   const CertificateWidget({Key? key}) : super(key: key);
@@ -24,7 +26,7 @@ class _CertificateWidgetState extends State<CertificateWidget> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("CERTIFICATE"),
+          Text("certificate"),
           SizedBox(height: 20),
           Container(
             height: 300,
@@ -48,7 +50,9 @@ class _CertificateWidgetState extends State<CertificateWidget> {
                 children: [
                   IconButton(
                     iconSize: 30,
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(CerficatePreview());
+                    },
                     icon: Image.asset(
                       "assets/png/preview.png",
                     ),

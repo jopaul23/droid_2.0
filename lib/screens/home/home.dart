@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scanner/constants/constants.dart';
 import 'package:scanner/screens/certificates.dart/certificates.dart';
 import 'package:scanner/screens/food/fooddetails.dart';
-import 'package:scanner/screens/home/top_widget.dart';
+import 'package:scanner/widgets/top_widget.dart';
 import 'package:scanner/controller/person_controller.dart';
 import 'package:scanner/screens/scanningPage/scanning_page.dart';
 import 'package:scanner/widgets/user_container.dart';
@@ -28,6 +28,13 @@ class _HomeState extends State<Home> {
     int _currentIndex = 0;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: TextButton.icon(
+          icon: Icon(
+            Icons.share,
+            color: CommonPageColors.primaryBlue,
+          ),
+          onPressed: () {},
+          label: Text('Export to excel')),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: CommonPageColors.white,
         currentIndex: _currentIndex,
@@ -91,6 +98,7 @@ class _HomeState extends State<Home> {
                     List.generate(personController.userList.length, (index) {
                   return Center(
                     child: HomePaeContainer(
+                      isCertificate: false,
                       size: size,
                       index: index,
                     ),

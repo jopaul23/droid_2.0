@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scanner/constants/constants.dart';
 import 'package:scanner/screens/food/fooddetails.dart';
 import 'package:scanner/screens/home/home.dart';
-import 'package:scanner/screens/home/top_widget.dart';
+import 'package:scanner/widgets/top_widget.dart';
 import 'package:scanner/controller/person_controller.dart';
 import 'package:scanner/screens/scanningPage/scanning_page.dart';
 import 'package:scanner/widgets/user_container.dart';
@@ -102,6 +102,7 @@ class _CertificateState extends State<Certificate> {
                     List.generate(personController.userList.length, (index) {
                   return Center(
                     child: HomePaeContainer(
+                      isCertificate: true,
                       size: size,
                       index: index,
                     ),
