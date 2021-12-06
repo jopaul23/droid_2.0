@@ -103,6 +103,7 @@ class _CertificateState extends State<Certificate> {
                   return Center(
                     child: HomePaeContainer(
                       size: size,
+                      isC: true,
                       index: index,
                     ),
                   );

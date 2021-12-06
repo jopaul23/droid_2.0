@@ -4,6 +4,7 @@ import 'package:scanner/constants/constants.dart';
 import 'package:scanner/controller/person_controller.dart';
 import 'package:get/get.dart';
 import 'package:scanner/models/food.dart';
+import 'package:scanner/screens/certificates.dart/certificate_preview.dart';
 import 'package:scanner/screens/participantDetails/participant_qrdetails.dart';
 
 class HomePaeContainer extends StatelessWidget {
@@ -11,26 +12,28 @@ class HomePaeContainer extends StatelessWidget {
     Key? key,
     required this.size,
     required this.index,
+    required this.isC,
   }) : super(key: key);
 
   final Size size;
   final int index;
+  final bool isC;
 
   @override
   PersonController personController = Get.find<PersonController>();
 
   int _currentIndex = 0;
 
-
-@override
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-      
-        Get.to(ParticipantDetails(
-          user: personController.userList[index],
- 
-        ));
+        if (isC)
+          Get.to(CerficatePreview(user: personController.userList[index]));
+        else
+          Get.to(ParticipantDetails(
+            user: personController.userList[index],
+          ));
       },
       child: Container(
         padding: const EdgeInsets.all(10),

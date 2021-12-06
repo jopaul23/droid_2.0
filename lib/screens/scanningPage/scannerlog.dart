@@ -54,7 +54,7 @@ class _ScannerLogState extends State<ScannerLog> {
                   ListTile(
                     title: const Text('tea'),
                     leading: Radio(
-                      value: 'tea',
+                      value: 'snacks',
                       groupValue: _site,
                       onChanged: (var value) {
                         setState(() {
@@ -77,10 +77,11 @@ class _ScannerLogState extends State<ScannerLog> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        Get.off(QRViewExample(tag: _site,));
-                 
+                        Get.off(QRViewExample(
+                          tag: _site,
+                        ));
                       },
-                      child:const Text("Continue"))
+                      child: const Text("Continue"))
                 ],
               )),
             ),

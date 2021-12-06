@@ -63,12 +63,16 @@ class Api {
   }
 
   static void update(int id, var value, var tag) async {
-    final urLink = Uri.parse(url + '/updateRefershment');
-    print(tag);
-    final response = await http.post(urLink, body: {
-      'id': id.toString(),
-      'value': value.toString(),
-      'tag': tag.toLowerCase()
-    });
+    try {
+      final urLink = Uri.parse(url + '/updateRefershment');
+      print(tag);
+      final response = await http.post(urLink, body: {
+        'id': id.toString(),
+        'value': value.toString(),
+        'tag': tag.toLowerCase()
+      });
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }

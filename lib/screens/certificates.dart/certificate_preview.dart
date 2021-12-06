@@ -1,5 +1,8 @@
 import 'dart:convert';
-
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:external_path/external_path.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scanner/backend/api.dart';
@@ -16,6 +19,7 @@ class CerficatePreview extends StatefulWidget {
 
 class _CerficatePreviewState extends State<CerficatePreview> {
   Image? certificate;
+  Uint8List? uint8list;
   @override
   void initState() {
     // TODO: implement initState
@@ -26,8 +30,9 @@ class _CerficatePreviewState extends State<CerficatePreview> {
   void _generateCertificate() async {
     final rawbase64 = await Api.getCertificate(widget.user.id);
     setState(() {
+      uint8list = base64.decode(rawbase64);
       certificate = Image.memory(
-        base64.decode(rawbase64),
+        uint8list!,
         width: MediaQuery.of(context).size.width - defaultPadding * 2,
       );
     });
@@ -68,8 +73,35 @@ class _CerficatePreviewState extends State<CerficatePreview> {
                 height: 30,
               ),
               GestureDetector(
-                onTap: () {
+                onTap: () async {
                   // Download
+                  Permission permission = Permission.storage;
+
+                  while (await permission.status.isDenied) {
+                    await permission.request();
+                    // We didn't ask for permission yet or the permission has been denied before but not permanently.
+
+                  }
+
+                  while (await permission.status.isDenied) {
+                    await permission.request();
+                    // We didn't ask for permission yet or the permission has been denied before but not permanently.
+
+                  }
+
+// You can can also directly ask the permission about its status.
+                  if (await Permission.location.isRestricted) {
+                    // The OS restricts access, for example because of parental controls.
+                  }
+
+                  String path =
+                      await ExternalPath.getExternalStoragePublicDirectory(
+                          ExternalPath.DIRECTORY_DOWNLOADS);
+                  path = path + "/" + "test" + ".png";
+
+                  File file = File(path);
+                  if (!file.existsSync()) file.create(recursive: true);
+                  file.writeAsBytes(uint8list!);
                 },
                 child: Container(
                   alignment: Alignment.center,

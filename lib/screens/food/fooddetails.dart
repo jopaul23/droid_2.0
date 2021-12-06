@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scanner/backend/api.dart';
+import 'package:scanner/backend/convert_csv.dart';
 import 'package:scanner/constants/constants.dart';
 import 'package:get/get.dart';
 import 'package:scanner/models/food.dart';
@@ -73,10 +74,12 @@ class _FoodDetailsState extends State<FoodDetails> {
             ),
           ],
         ),
-        floatingActionButton: TextButton.icon(
-            icon: Icon(Icons.share),
-            onPressed: () {},
-            label: Text('Export to excel')),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            convert_csv_user_food(_foods);
+          },
+          child: Icon(Icons.download),
+        ),
         body: SafeArea(
             child: Container(
                 padding: EdgeInsets.only(
@@ -164,8 +167,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                             ],
                           ),
                         ),
-                        _loaded?
-                        createTable():CircularProgressIndicator(),
+                        _loaded ? createTable() : CircularProgressIndicator(),
                       ],
                     )
                   ],
@@ -191,20 +193,23 @@ class _FoodDetailsState extends State<FoodDetails> {
                 ),
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: Text(_foods[index].breakFast.toString(), textAlign: TextAlign.center),
+                  child: Text(_foods[index].breakFast.toString(),
+                      textAlign: TextAlign.center),
                 ),
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: Text(_foods[index].lunch.toString(), textAlign: TextAlign.center),
+                  child: Text(_foods[index].lunch.toString(),
+                      textAlign: TextAlign.center),
                 ),
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child:
-                      Text(_foods[index].snack.toString(), textAlign: TextAlign.center),
+                  child: Text(_foods[index].snack.toString(),
+                      textAlign: TextAlign.center),
                 ),
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: Text(_foods[index].supper.toString(), textAlign: TextAlign.center),
+                  child: Text(_foods[index].supper.toString(),
+                      textAlign: TextAlign.center),
                 ),
               ],
             );

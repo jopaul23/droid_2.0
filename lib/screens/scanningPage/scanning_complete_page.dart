@@ -56,8 +56,8 @@ class _ScanningCompletePageState extends State<ScanningCompletePage>
   @override
   void dispose() {
     // TODO: implement dispose
+    if (mounted) animationController.dispose();
     super.dispose();
-    animationController.dispose();
   }
 
   @override
