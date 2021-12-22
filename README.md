@@ -1,6 +1,6 @@
 # scanner
 
-A new Flutter project.
+Droid hackathon project
 
 ## Getting Started
 
